@@ -8,8 +8,29 @@ const ProductContext = React.createContext()
 class ProductProvider extends Component {
 
     state={
-        products:storeProducts,
+        products:[],
         detailProduct:detailProduct
+    }
+
+
+    //We are doing this because our core data is array of objects
+    //When we are passing object we are acctually passing reference...
+    //every time when we change inChart for example than our core data
+    //will be affected and corrupted, (it suppose to stay default data)
+    //at least for this project...
+    //There could be easier and different solution than this one cant be bothered right now
+    setProducts = () => {
+        let products = []
+        storeProducts.forEach(item =>{
+            const singleItem = {...item};
+            products = [...products,singleItem];
+        })
+
+        this.setState({products})
+    }
+
+    componentDidMount(){
+        this.setProducts()
     }
 
     handleDetail = () =>{
