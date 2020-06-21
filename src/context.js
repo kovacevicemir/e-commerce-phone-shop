@@ -19,6 +19,7 @@ class ProductProvider extends Component {
     //will be affected and corrupted, (it suppose to stay default data)
     //at least for this project...
     //There could be easier and different solution than this one cant be bothered right now
+    
     setProducts = () => {
         let products = []
         storeProducts.forEach(item =>{
@@ -37,8 +38,8 @@ class ProductProvider extends Component {
         console.log('hello from detail')
     }
 
-    addToCart = () =>{
-        console.log('hello cart')
+    addToCart = (id) =>{
+        console.log('hello cart id:',id)
     }
 
     render() {
