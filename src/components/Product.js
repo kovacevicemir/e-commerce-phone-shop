@@ -11,15 +11,23 @@ export default class Product extends Component {
         return (
             <ProductWrapper className='col-9 m-1 mx-auto col-md-6 col-lg-3'>
                 <div className='card'>
-                    <div className='img-container p-5' onClick={() => console.log('clicked')}>
-                        <Link to='/details'>
-                            <img src={img} alt='product' className='card-img-top'/>
-                        </Link>
-                        <button onClick={()=>{console.log('added to cart')}} className='cart-btn' disabled={inCart ? true : false}>
-                            {inCart ? (<p className='text-capitalize mb-0' disabled>in cart</p>) : <i className='shopping cart plus icon' /> }
-                        </button>
+                    <ProductConsumer>
+                    {value => {
+
+                        return(
+                            <div className='img-container p-5' onClick={() => value.handleDetail(id)}>
+                                <Link to='/details'>
+                                    <img src={img} alt='product' className='card-img-top'/>
+                                </Link>
+                                <button onClick={()=>{console.log('added to cart')}} className='cart-btn' disabled={inCart ? true : false}>
+                                    {inCart ? (<p className='text-capitalize mb-0' disabled>in cart</p>) : <i className='shopping cart plus icon' /> }
+                                </button>
+                            </div>
+                        )
                         
-                    </div>
+                    }}
+                    
+                    </ProductConsumer>
                     <div className='card-footer d-flex justify-content-between'>
                         <p className='align-self-center mb-0'>
                             {title}
