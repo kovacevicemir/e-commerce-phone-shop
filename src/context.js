@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {storeProducts, detailProduct} from './data'
+import { ThemeConsumer } from 'styled-components'
 
 const ProductContext = React.createContext()
 //Provider
@@ -9,7 +10,8 @@ class ProductProvider extends Component {
 
     state={
         products:[],
-        detailProduct:detailProduct
+        detailProduct:detailProduct,
+        cart:[]
     }
 
 
@@ -45,7 +47,14 @@ class ProductProvider extends Component {
     }
 
     addToCart = (id) =>{
-        console.log('hello cart id:',id)
+        let tempProducts = [...this.state.products]
+        const index = tempProducts.indexOf(this.getItem(id))
+        const product = tempProducts[index]
+        product.inCart = true
+        product.count = 1
+        product.total = product.price
+
+        this.setState({tempProducts, cart:[...this.state.cart, product]})
     }
 
     render() {
