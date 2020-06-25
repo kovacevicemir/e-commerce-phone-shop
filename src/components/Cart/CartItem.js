@@ -5,7 +5,7 @@ const CartItem = ({item,value}) => {
     const {increment,decrement,removeItem,clearCart} = value
 
     return (
-        <div className="row my-1 text-capitalize text-center">
+        <div className="row my-4 text-capitalize text-center">
             <div className="col-10 mx-auto col-lg-2">
                 <img src={img} style={{width:'5rem',height:'5rem'}} className='img-fluid' alt={title} />
             </div>
