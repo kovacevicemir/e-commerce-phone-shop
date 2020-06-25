@@ -72,11 +72,27 @@ class ProductProvider extends Component {
     }
 
     increment = (id) =>{
-        console.log('this is increment method')
+        const item = this.getItem(id)
+        item.count++
+        item.total = item.count * item.price
+
+        this.addTotals()
+
+        let cart = this.state.cart
+        this.setState({cart:[...cart]})
     }
 
     decrement = (id) =>{
-        console.log('this is decrement method')
+        const item = this.getItem(id)
+        if(item.count != 1){
+            item.count--
+        }
+        item.total = item.count * item.price
+
+        this.addTotals()
+
+        let cart = this.state.cart
+        this.setState({cart:[...cart]})
     }
 
     removeItem = (id) =>{
